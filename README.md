@@ -68,3 +68,17 @@ found 0 vulnerabilities
   ➜  Network: use --host to expose
   ➜  press h + enter to show help
 ```
+
+```sh
+cd custom-app
+```
+
+# REST API用ライブラリーの生成
+```sh
+npm install @openapitools/openapi-generator-cli
+VERSION=v2.6.0
+./node_modules/.bin/openapi-generator-cli generate \
+-g typescript-axios -i https://docs.intdash.jp/api/intdash-api/${VERSION}/openapi_public.yaml \
+-o ./src/intdash \
+--additional-properties=useSingleRequestParameter=true
+```
