@@ -82,3 +82,21 @@ VERSION=v2.6.0
 -o ./src/intdash \
 --additional-properties=useSingleRequestParameter=true
 ```
+
+# OAuth2クライアント登録
+```sh
+INTDASH_SERVER=macnica-fms-demo.vm2m.jp
+YOUR_API_TOKEN=************************
+curl -X POST "${INTDASH_SERVER}/api/auth/users/me/clients" \
+  -H "Content-Type: application/json" \
+  -H "X-Intdash-Token: ${YOUR_API_TOKEN}" \
+  --data-raw "{
+    \"name\": \"my-authorization-code-client\",
+    \"grant_type\": \"authorization_code\",
+    \"token_endpoint_auth_method\": \"client_secret_basic\",
+    \"redirect_uris\": [
+      \"http://127.0.0.1:8080/oauth2/callback\",
+      \"https://127.0.0.1:8443/oauth2/callback\"
+    ]
+  }"
+```
